@@ -473,7 +473,11 @@ function fetchItems(){
     displayUI();
 }
 
-    fetchItems();
+if (myArray.length > 0) {
+  fetchItems();
+}
+
+
 
 
 function displayUI(){
