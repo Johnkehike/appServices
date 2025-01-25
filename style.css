@@ -250,7 +250,7 @@
 
 .general-search{
     width: fit-content;
-    height: auto;
+    height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -258,7 +258,7 @@
     
 }
 .general-search input{
-    padding: 0.2rem 0.3rem;
+    padding: 0.2rem 0.9rem;
     border-radius: 0.4rem;
     outline: none;
     border: 1px solid #555555;
@@ -274,6 +274,7 @@
     display: flex;
     flex-direction: row;
     column-gap: 0.6rem;
+    flex-grow: 0.5;
 }
 .from-group{
     width: 100%;
@@ -288,6 +289,15 @@
     border: 1px solid #555555;
     
 }
+
+input[type="date"]::before {
+    content: attr(placeholder);
+    color: rgb(118, 118, 118);;
+  }
+  
+  input[type="date"]:focus::before {
+    content: "";
+  }
 .from-group :-ms-input-placeholder{
     
 }
@@ -608,7 +618,7 @@
 }
 
 .vert{
-
+    position: relative;
 }
 
 .pop-up{
@@ -623,6 +633,8 @@
     padding: 0.2rem 0.4rem;
     border-radius: 0.5rem;
     visibility: hidden;
+    z-index: 1000;
+    top: 100%;
 
 
 
