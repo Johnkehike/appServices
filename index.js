@@ -476,7 +476,9 @@ function fetchItems(){
 let myArrayIndexNew = myArray.length -1;
 
 
-
+if (myArray.length > 0) {
+  fetchItems();
+}
 
 
 
@@ -485,9 +487,7 @@ function displayUI(){
     
 
 
-  if (myArray.length > 0) {
-    fetchItems();
-  }
+
   myArray.forEach((item, index) =>{
     if (item.itemStat !== 'start') {
       progressContainer.innerHTML = '';
