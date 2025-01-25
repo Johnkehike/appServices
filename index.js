@@ -473,9 +473,10 @@ function fetchItems(){
     displayUI();
 }
 
-if (myArray.length > 0) {
-  fetchItems();
-}
+let myArrayIndexNew = myArray.length -1;
+
+
+
 
 
 
@@ -484,10 +485,21 @@ function displayUI(){
     
 
 
-    // Clear all containers at the start
-  startContainer.innerHTML = '';
-  progressContainer.innerHTML = '';
-  completedContainer.innerHTML = '';
+  if (myArray.length > 0) {
+    fetchItems();
+  }
+  myArray.forEach((item, index) =>{
+    if (item.itemStat !== 'start') {
+      progressContainer.innerHTML = '';
+      completedContainer.innerHTML = '';
+    }
+    else{
+      startContainer.innerHTML = '';
+      progressContainer.innerHTML = '';
+      completedContainer.innerHTML = '';
+    }
+  })
+
 
   // Check if there are items in the filtered array
   if (myArray.length > 0) {
