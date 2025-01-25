@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="main" id="main">
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-title" id="sidebar-title">
+                <h1>ToDo</h1>
+            </div>
+            <div class="sidebar-dashboard" id="sidebar-dashboard">
+                <!-- <i class="fa-solid fa-bars"></i> -->
+                 <div class="grid-dash" id="grid-dash">
+                    <img src="./img/grid-dash.png" alt="">
+                 </div>
+                 <div class="p-dash" id="p-dash">
+                    <p>Dashboard</p>
+                 </div>
+                
+            </div>
+        </div>
+
+        <div class="body" id="body">
+            <div class="nav" id="nav">
+                <div class="checklist" id="checklist">
+                    <img src="./img/checklist.png" alt="">
+                </div>
+                <div class="chevron-one" id="chevron-one">
+                    <img src="./img/chevron-right.png" alt="">
+                </div>
+                <div class="nav-dashboard" id="nav-dashboard">
+                    <p>Dashboard</p>
+                </div>
+                <div class="chevron-two" id="chevron-two">
+                    <img src="./img/chevron-right.png" alt="">
+                </div>
+                <div class="nav-overview" id="nav-overview">
+                    <button>Overview</button>
+                </div>
+            </div>
+
+            <div class="content" id="content">
+                <div class="title-n-search" id="title-n-search">
+                    <div class="title" id="title">
+                        <div class="title-text" id="title-text">
+                            <h1>My Todo</h1>
+                        </div>
+                        <div class="title-task" id="title-task">
+                            <!-- <div class="new-task" id="new-task"> -->
+                                <button class="plus" id="plus-new">
+                                    <img class="plus-img" src="./img/plus.png" alt="">New Task
+                                </button>
+                                <!-- <button>New Task</button> -->
+                            <!-- </div> -->
+                            <div class="profile" id="profile">
+                                <img src="./img/profile.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="search-functions" id="search-functions">
+                        <div class="general-search" id="general-search">
+                            <input type="text" placeholder="Search" id="search-apply">
+                            <!-- <i class="fa-light fa-magnifying-glass"></i> -->
+                            <!-- <i class="fa-thin fa-magnifying-glass"></i> -->
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <!-- <div class="search-icon" id="search-icon">
+                                <img src="./img/search.png" alt="">
+                            </div> -->
+                        </div>
+                        <div class="date-search" id="date-search">
+                            <div class="from-group" id="from-group">
+                                <input type="date" id="from" name="from">
+                                <!-- <img src="./img/calendar.png" alt=""> -->
+                            </div>
+                            <div class="to-group" id="to-group">
+                                <input type="date" id="to" name="to">
+                                <!-- <img src="./img/calendar.png" alt=""> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tasks" id="tasks">
+
+
+                    <div class="start" id="start">
+
+                        <div class="start-text" id="start-text">
+                            <i class="fa-solid fa-circle"></i>
+                            <p>To Start</p>
+                        </div>
+                        <div class="start-container" id="start-container">
+                            <div class="start-items-container" id="start-items-container">
+                                <!-- <div class="each-task" id="each-task">
+                                    <div class="item-title" id="item-title">
+                                        <h3>Title of the Task</h3>
+
+                                        <div class="vert" id="vert">
+                                            <i class="fa-solid fa-ellipsis-vertical"></i> 
+                                            <div class="pop-up" id="pop-up">
+                                                <a href="#" class="edit" id="edit">Edit</a>
+                                                <a href="#" class="delete" id="delete">Delete</a>
+                                            </div>
+                                        </div>
+
+                                        
+                                    </div>
+                                    <div class="item-body" id="item-body">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem assumenda, vitae laudantium fugiat nihil asperiores explicabo esse dolor delectus.</p>
+                                    </div>
+                                    <div class="item-created-date" id="item-created-date">
+                                        <p>17/07/2024</p>
+                                    </div>
+                                </div> -->
+
+                                <div class="add-new" id="add-new">
+                                    <button class="plus-black" id="plus-black">
+                                        <img class="plus-img" src="./img/addBlack.png" alt="">Add New
+                                    </button>
+
+
+                                    <form action="submit" class="form-no" id="form">
+                                        <div class="input-group" id="input-group">
+                                            <input type="text" class="title-input" id="title-input" placeholder="Title">
+                                        </div>
+                                        <div class="input-group" id="input-group">
+                                            <textarea rows="4" type="text" class="description-input" id="description-input" placeholder="Description"></textarea>
+                                        </div>
+                                        <div class="formbtn" id="formbtn">
+                                            <button class="formbtn-btn" id="formbtn-btn">Add Task</button>
+                                            <button class="cancel" id="cancel">Cancel</button>
+                                        </div>
+                                    </form>
+
+
+
+
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- <div class="add-new" id="add-new">
+                                <button class="plus-black" id="plus">
+                                    <img class="plus-img" src="./img/addBlack.png" alt="">Add New
+                                </button>
+                            </div> -->
+                        </div>
+
+                    </div>
+
+
+                    <div class="progress" id="progress">
+
+                        <div class="progress-text" id="progress-text">
+                            <i class="fa-solid fa-circle"></i>
+                            <p>In Progress</p>
+                            
+                        </div>
+                        <div class="progress-container" id="progress-container">
+                            <div class="progress-items-container" id="progress-items-container">
+                                <!-- <div class="each-task" id="each-task">
+                                    <div class="item-title" id="item-title">
+                                        <h3>Title of the Task</h3>
+                                        <i class="fa-solid fa-ellipsis-vertical"></i> 
+                                    </div>
+                                    <div class="item-body" id="item-body">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem assumenda, vitae laudantium fugiat nihil asperiores explicabo esse dolor delectus.</p>
+                                    </div>
+                                    <div class="item-created-date" id="item-created-date">
+                                        <p>17/07/2024</p>
+                                    </div>
+                                </div> -->
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="completed" id="completed">
+
+                        <div class="completed-text" id="completed-text">
+                            <i class="fa-solid fa-circle"></i>
+                            <p>Completed</p>
+                        </div>
+                        <div class="completed-container" id="completed-container">
+                            <div class="completed-items-container" id="completed-items-container">
+                                <!-- <div class="each-task" id="each-task">
+                                    <div class="item-title" id="item-title">
+                                        <h3>Title of the Task</h3>
+                                        <i class="fa-solid fa-ellipsis-vertical"></i> 
+                                    </div>
+                                    <div class="item-body" id="item-body">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem assumenda, vitae laudantium fugiat nihil asperiores explicabo esse dolor delectus.</p>
+                                    </div>
+                                    <div class="item-created-date" id="item-created-date">
+                                        <p>17/07/2024</p>
+                                    </div>
+                                </div> -->
+                            </div>
+
+                            <!-- <div class="add-new" id="add-new">
+                                <div class="plus" id="plus">
+                                    <img src="./img/plus.png" alt="">
+                                </div>
+                                <div class="add-btn" id="add-btn">
+                                    <button>Add New</button>
+                                </div>
+                            </div> -->
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://kit.fontawesome.com/9125c408bc.js" crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+</body>
+</html>
