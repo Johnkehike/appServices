@@ -242,7 +242,7 @@ function submitForm(event){
                     
                     title : Title,
                     description : Description,
-                    itemStat : 'completed',
+                    itemStat : 'progress',
                     id :item.id,
                     date : item.date,
                     completed : item.completed
