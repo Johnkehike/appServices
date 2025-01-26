@@ -242,7 +242,7 @@
     height: auto;
     display: flex;
     flex-direction: row;
-    column-gap: 1rem;
+    
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
@@ -267,6 +267,7 @@
     position: relative;
     right: 1.5rem;
     color: rgb(118, 118, 118);
+    cursor: pointer;
 }
 .date-search{
     width: auto;
@@ -275,11 +276,23 @@
     flex-direction: row;
     column-gap: 0.6rem;
     flex-grow: 0.5;
+    justify-content: end;
+    align-items: end;
 }
 .from-group{
     width: 100%;
     height: auto;
+    position: relative;
+    /* display: inline-block; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
 }
+
 .from-group input{
     height: auto;
     width: 100%;
@@ -287,14 +300,63 @@
     border-radius: 0.4rem;
     outline: none;
     border: 1px solid #555555;
+    display: flex;
+    justify-content: space-between;
     
+}
+.from-group i{
+    position: relative;
+    right: 1.5rem;
+    /* top: 1rem; */
+    color: rgb(118, 118, 118);
+
+    /* position: absolute; */
+      /* right: 10px; Position it to the right of the input */
+      /* top: 50%; */
+      /* transform: translateY(-50%); */
+      /* font-size: 20px; Adjust size */
+      /* color: #888; Adjust color */
+      /* pointer-events: none; */
+}
+.to-group i{
+    position: relative;
+    right: 1.5rem;
+    color: rgb(118, 118, 118);
 }
 
 input[type="date"]::before {
+    
     content: attr(placeholder);
     color: rgb(118, 118, 118);;
   }
+
+  /* Hide the default placeholder in date input */
+input[type="date"]::-webkit-datetime-edit {
+    visibility: hidden; /* Hides the date placeholder */
+  }
   
+  /* Remove the dropdown icon in Chrome/Edge */
+  /* input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+  } */
+  
+  /* For Firefox */
+  input[type="date"]::-moz-placeholder {
+    visibility: hidden;
+  }
+  
+  /* For IE */
+  input[type="date"]:-ms-input-placeholder {
+    visibility: hidden;
+  }
+
+  input[type="text"]::after {
+    content: attr(placeholder);
+    color: rgb(118, 118, 118);;
+  }
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+  }
   input[type="date"]:focus::before {
     content: "";
   }
@@ -305,6 +367,12 @@ input[type="date"]::before {
 .to-group{
     width: 100%;
     height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+
 }
 .to-group input{
     height: auto;
@@ -313,6 +381,8 @@ input[type="date"]::before {
     border-radius: 0.4rem;
     outline: none;
     border: 1px solid #555555;
+    display: flex;
+    justify-content: space-between;
 }
 
 
@@ -324,6 +394,8 @@ input[type="date"]::before {
     display: flex;
     flex-direction: row;
     column-gap: 2rem;
+    /* flex-wrap: wrap; */
+    /* row-gap: 2rem; */
 
 }
 
@@ -571,7 +643,7 @@ input[type="date"]::before {
 }
 .input-group input::placeholder{
     color: #A0A0A0;
-    font-size: 1.1rem;
+    font-size: 0.7rem;
 }
 .input-group textarea{
     width: 100%;
@@ -584,7 +656,7 @@ input[type="date"]::before {
 
 .input-group textarea::placeholder{
     color: #A0A0A0;
-    font-size: 1.1rem;
+    font-size: 0.7rem;
 }
 .formbtn{
     width: 100%;
@@ -622,7 +694,7 @@ input[type="date"]::before {
 }
 
 .pop-up{
-    width: 7rem;
+    /* width: 7rem;
     height: auto;
     position: absolute;
     display: flex
@@ -634,7 +706,10 @@ input[type="date"]::before {
     border-radius: 0.5rem;
     visibility: hidden;
     z-index: 1000;
-    top: 100%;
+    top: 100%; */
+
+    visibility: hidden;
+    display: none;
 
 
 
@@ -647,18 +722,37 @@ input[type="date"]::before {
     border-radius: 0.5rem;
     row-gap: 0.4rem; */
 }
-.no-pop-up{
-    width: 7rem;
+.complete-pop{
+    visibility: hidden;
+    display: none;
+
+}
+.incomplete-pop{
+    width: fit-content;
     height: auto;
     position: absolute;
-    display: flex
-;
+    display: flex;
     flex-direction: column;
     justify-content: flex-start;
     border: 3px solid #C2CFEA;
     padding: 0.2rem 0.4rem;
     border-radius: 0.5rem;
     visibility: visible;
+    
+    right: 0.0rem;
+}
+.no-pop-up{
+    width: 7rem;
+    height: auto;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: 3px solid #C2CFEA;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.5rem;
+    visibility: visible;
+    
 }
 .edit{
     width: 100%;
@@ -686,4 +780,133 @@ input[type="date"]::before {
 }
 .fa-ellipsis-vertical:hover{
     cursor: pointer;
+}
+
+
+@media screen and (max-width: 853px){
+    .tasks{
+        width: 100%;
+        height: auto;
+    
+        display: flex;
+        flex-direction: row;
+        column-gap: 2rem;
+        flex-wrap: wrap;
+        row-gap: 2rem;
+    
+    }
+
+    .no-pop-up{
+        width: fit-content;
+        height: auto;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        border: 3px solid #C2CFEA;
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.5rem;
+        visibility: visible;
+        
+        right: 0.0rem;
+    }
+    .date-search{
+        display: none;
+    }
+ 
+    .nav{
+        display: none;
+    }
+    .search-functions{
+        width: 100%;
+    height: auto;
+    display: flex
+;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    }
+    .general-search{
+        width: 100%;
+    height: 100%;
+    display: flex
+;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    }
+    .general-search input{
+        width: 100%;
+    padding: 0.2rem 0.9rem;
+    border-radius: 0.4rem;
+    outline: none;
+    border: 1px solid #555555;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .date-search{
+        display: none;
+    }
+    .sidebar{
+        display: none;
+    }
+    .nav{
+        display: none;
+    }
+    .search-functions{
+        width: 100%;
+    height: auto;
+    display: flex
+;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    }
+    .general-search{
+        width: 100%;
+    height: 100%;
+    display: flex
+;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    }
+    .general-search input{
+        width: 100%;
+    padding: 0.2rem 0.9rem;
+    border-radius: 0.4rem;
+    outline: none;
+    border: 1px solid #555555;
+    }
+    .no-pop-up{
+        width: fit-content;
+        height: auto;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        border: 3px solid #C2CFEA;
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.5rem;
+        visibility: visible;
+        
+        right: 0.0rem;
+    }
+    .profile{
+        display: none;
+    }
+    .tasks{
+        width: 100%;
+        height: auto;
+    
+        display: flex;
+        flex-direction: row;
+        column-gap: 2rem;
+        flex-wrap: wrap;
+        row-gap: 2rem;
+    
+    }
 }

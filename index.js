@@ -7,8 +7,25 @@ let completedContainer = document.getElementById('completed-items-container');
 let addNew = document.getElementById('add-new');
 let tasks = document.getElementById('tasks');
 let searchInput = document.getElementById('search-apply');
-console.log(searchInput);
+let fromDate = document.getElementById('from');
+let toDate = document.getElementById('to');
+let icon = document.getElementById('toCalendar');
+let icon2 = document.getElementById('fromCalendar');
 
+
+
+icon.addEventListener('click', () => {
+  
+  
+  toDate.showPicker(); 
+});
+
+icon2.addEventListener('click', () => {
+  if (!fromDate.showPicker()) {
+    fromDate.showPicker();
+  }
+  
+})
 
 searchInput.addEventListener('input', searchfn);
 
@@ -120,136 +137,10 @@ function displaySearch() {
         }
       });
     }
-  }
+  };
   
 
-// function displaySerach2(){
-    
-//     let currentIndex = filteredArray.length-1;
 
-    
-//         if (currentIndex >=0 && filteredArray) {
-//             filteredArray.map((item, index) => {
-//                 if (item.itemStat !== 'start') {
-//                     progressContainer.innerHTML = ``;
-//                     completedContainer.innerHTML = ``;
-//                 }else if (item.itemStat === 'start') {
-//                     startContainer.innerHTML = ``;
-//                     progressContainer.innerHTML = ``;
-//                     completedContainer.innerHTML = ``;
-//                 }
-//             })
-//     }
-//         filteredArray.forEach((item, index) => {
- 
-        
-
-//             let eachTask = document.createElement('div');
-//             eachTask.classList.add('each-task');
-//             eachTask.setAttribute('id', `${index}`);
-//             eachTask.setAttribute('data-action', 'each-task');
-//             eachTask.addEventListener('click', (e) => {
-//                 e.preventDefault();
-//                 clickAction(index);
-//             });
-            
-    
-//             let itemTitle = document.createElement('div')
-//             itemTitle.classList.add('item-title');
-//             itemTitle.setAttribute('data-action', 'item-title');
-    
-//             let hTitle = document.createElement('h3');
-//             hTitle.textContent = item.title;
-    
-//             let vert = document.createElement('div');
-//             vert.classList.add('vert')
-    
-//             let iTag = document.createElement('i');
-//             iTag.classList.add('fa-solid', 'fa-ellipsis-vertical');
-//             // iTag.addEventListener('click', `${open(index)}`)
-    
-//             let popUp = document.createElement('div');
-//             popUp.classList.add('pop-up');
-    
-//             let edit = document.createElement('a');
-//             edit.classList.add('edit');
-//             edit.setAttribute('data-action', 'edit');
-//             edit.textContent = `Edit`;
-//             edit.addEventListener('click', (e) => {
-//                 e.preventDefault();
-//                 editfn(index)
-//             });
-    
-//             let deleteItem = document.createElement('a');
-//             deleteItem.classList.add('delete');
-//             deleteItem.setAttribute('data-action', 'delete')
-//             deleteItem.textContent = 'Delete';
-//             deleteItem.addEventListener('click', (e) => {
-//                 e.preventDefault();
-//                 deletefn(index);
-                
-//             })
-    
-//             let itemBody = document.createElement('div');
-//             itemBody.classList.add('item-body');
-    
-//             let itemBodyP = document.createElement('p');
-//             itemBodyP.textContent = item.description;
-//             itemBodyP.setAttribute('data-action', 'bodyP');
-    
-//             let itemDate = document.createElement('div');
-//             itemDate.classList.add('item-created-date');
-    
-//             let itemDateP = document.createElement('p');
-//             itemDateP.textContent = item.date;
-    
-//             //append conditionally
-//             if (item.itemStat === 'start') {
-//                 popUp.append(edit, deleteItem);
-//                 vert.append(iTag, popUp);
-    
-//                 itemTitle.append(hTitle, vert);
-    
-    
-//                 itemBody.append(itemBodyP);
-//                 itemDate.append(itemDateP);
-//                 eachTask.append(itemTitle,itemBodyP,itemDate);
-//                 startContainer.append(eachTask, addNew);
-                
-//             }else if (item.itemStat === 'progress') {
-//                 popUp.append(edit, deleteItem);
-//                 vert.append(iTag, popUp);
-    
-//                 itemTitle.append(hTitle, vert);
-    
-    
-//                 itemBody.append(itemBodyP);
-//                 itemDate.append(itemDateP);
-//                 eachTask.append(itemTitle,itemBodyP,itemDate);
-//                 progressContainer.append(eachTask);
-//             }else if (item.itemStat === 'completed') {
-//                 popUp.append(edit, deleteItem);
-//                 vert.append(iTag, popUp);
-    
-//                 itemTitle.append(hTitle, vert);
-    
-    
-//                 itemBody.append(itemBodyP);
-//                 itemDate.append(itemDateP);
-//                 eachTask.append(itemTitle,itemBodyP,itemDate);
-//                 completedContainer.append(eachTask);
-//             }
-    
-    
-    
-//             // startContainer.insertBefore(eachTask, addNew);
-    
-    
-//         })
-    
-    
-    
-// }
 
 //get date form was submitted
 const date = new Date();
@@ -261,6 +152,7 @@ let todayDate = `${day}/${month}/${year}`;
 let myArray = [];
 let editingSignal = -1;
 let myArrayIndex = myArray.length - 1;
+let fetchingSignal = 0;
 
 
 
@@ -350,7 +242,7 @@ function submitForm(event){
                     
                     title : Title,
                     description : Description,
-                    itemStat : 'progress',
+                    itemStat : 'completed',
                     id :item.id,
                     date : item.date,
                     completed : item.completed
@@ -376,8 +268,6 @@ function submitForm(event){
         
         form.reset();
         fetchItems();
-        
-        console.log(myArray);
         form.classList.remove('form');
         form.classList.add('form-no');
         openFormbtn.classList.remove('plus-black-no');
@@ -399,68 +289,17 @@ function submitForm(event){
         form.reset();
         fetchItems();
         
-        console.log(myArray);
         form.classList.remove('form');
         form.classList.add('form-no');
         openFormbtn.classList.remove('plus-black-no');
         openFormbtn.classList.add('plus-black');
-    }
-    
-    // if (editingSignal >= 0) {
-    //     myArray = myArray.map((item, index) => {
-    //         if (index === editingSignal) {
-    //             return{
-    //                 title : Title,
-    //                 description : Description,
-    //                 itemStat : 'progress'
-    //             }else{
-    //                 return{
-
-    //                 }
-    //             }
-    //         }
-              
-    //         localStorage.setItem('object', JSON.stringify(myArray));
-    //         editingSignal = -1;
-    //         form.reset();
-    //         fetchItems();
-            
-            
-    //         console.log(myArray);
-    //         form.classList.remove('form');
-    //         form.classList.add('form-no');
-    //         openFormbtn.classList.remove('plus-black-no');
-    //         openFormbtn.classList.add('plus-black');
-    //     })
-    // }else {
-    //     const object = {
-    //         id: new Date().getTime().toString(),
-    //         title : Title,
-    //         description : Description,
-    //         itemStat : 'start',
-    //         date : todayDate,
-    //         completed : false
-    //     };
-    
-    //     myArray.push(object);
-    
-    //     localStorage.setItem('object', JSON.stringify(myArray));
-        
-    //     form.reset();
-    //     fetchItems();
-        
-    //     console.log(myArray);
-    //     form.classList.remove('form');
-    //     form.classList.add('form-no');
-    //     openFormbtn.classList.remove('plus-black-no');
-    //     openFormbtn.classList.add('plus-black');
-    // }
+    };
 
 }
 
 
 function fetchItems(){
-    
+    myArray=[];
     let formSubmit = localStorage.getItem('object');
     
     
@@ -477,6 +316,8 @@ let myArrayIndexNew = myArray.length -1;
 
 
 if (myArray.length > 0) {
+  fetchItems();
+}else if(myArray.length === 0){
   fetchItems();
 }
 
@@ -530,7 +371,15 @@ function displayUI(){
       iTag.classList.add('fa-solid', 'fa-ellipsis-vertical');
 
       let popUp = document.createElement('div');
-      popUp.classList.add('pop-up');
+      if (item.itemStat === 'completed') {
+        
+        popUp.classList.add('complete-pop');
+      }else if (item.itemStat === 'start' || item.itemStat === 'progress'){
+        
+        popUp.classList.add('pop-up');
+      }
+      
+      
 
       let edit = document.createElement('a');
       edit.classList.add('edit');
@@ -584,126 +433,7 @@ function displayUI(){
 
 
 
-    // let currentIndex = filteredArray.length-1;    
-    
-    //     if (currentIndex >=0 && myArray) {
-    //         myArray.map((item, index) => {
-    //             if (item.itemStat !== 'start') {
-    //                 progressContainer.innerHTML = ``;
-    //                 completedContainer.innerHTML = ``;
-    //             }else if (item.itemStat === 'start') {
-    //                 startContainer.innerHTML = ``;
-    //                 progressContainer.innerHTML = ``;
-    //                 completedContainer.innerHTML = ``;
-    //             }
-    //         })
-    
-    // }
-
-
-    
-
-    // myArray.forEach((item, index) => {
- 
-        
-
-    //     let eachTask = document.createElement('div');
-    //     eachTask.classList.add('each-task');
-    //     eachTask.setAttribute('id', `${index}`);
-    //     eachTask.setAttribute('data-action', 'each-task');
-    //     eachTask.addEventListener('click', (e) => {
-    //         e.preventDefault();
-    //         clickAction(index);
-    //     });
-        
-
-    //     let itemTitle = document.createElement('div')
-    //     itemTitle.classList.add('item-title');
-    //     itemTitle.setAttribute('data-action', 'item-title');
-
-    //     let hTitle = document.createElement('h3');
-    //     hTitle.textContent = item.title;
-
-    //     let vert = document.createElement('div');
-    //     vert.classList.add('vert')
-
-    //     let iTag = document.createElement('i');
-    //     iTag.classList.add('fa-solid', 'fa-ellipsis-vertical');
-        
-
-    //     let popUp = document.createElement('div');
-    //     popUp.classList.add('pop-up');
-
-    //     let edit = document.createElement('a');
-    //     edit.classList.add('edit');
-    //     edit.setAttribute('data-action', 'edit');
-    //     edit.textContent = `Edit`;
-    //     edit.addEventListener('click', (e) => {
-    //         e.preventDefault();
-    //         editfn(index)
-    //     });
-
-    //     let deleteItem = document.createElement('a');
-    //     deleteItem.classList.add('delete');
-    //     deleteItem.setAttribute('data-action', 'delete')
-    //     deleteItem.textContent = 'Delete';
-    //     deleteItem.addEventListener('click', (e) => {
-    //         e.preventDefault();
-    //         deletefn(index);
-            
-    //     })
-
-    //     let itemBody = document.createElement('div');
-    //     itemBody.classList.add('item-body');
-
-    //     let itemBodyP = document.createElement('p');
-    //     itemBodyP.textContent = item.description;
-    //     itemBodyP.setAttribute('data-action', 'bodyP');
-
-    //     let itemDate = document.createElement('div');
-    //     itemDate.classList.add('item-created-date');
-
-    //     let itemDateP = document.createElement('p');
-    //     itemDateP.textContent = item.date;
-
-        
-    //     if (item.itemStat === 'start') {
-    //         popUp.append(edit, deleteItem);
-    //         vert.append(iTag, popUp);
-
-    //         itemTitle.append(hTitle, vert);
-
-
-    //         itemBody.append(itemBodyP);
-    //         itemDate.append(itemDateP);
-    //         eachTask.append(itemTitle,itemBodyP,itemDate);
-    //         startContainer.append(eachTask, addNew);
-            
-    //     }else if (item.itemStat === 'progress') {
-    //         popUp.append(edit, deleteItem);
-    //         vert.append(iTag, popUp);
-
-    //         itemTitle.append(hTitle, vert);
-
-
-    //         itemBody.append(itemBodyP);
-    //         itemDate.append(itemDateP);
-    //         eachTask.append(itemTitle,itemBodyP,itemDate);
-    //         progressContainer.append(eachTask);
-    //     }else if (item.itemStat === 'completed') {
-    //         popUp.append(edit, deleteItem);
-    //         vert.append(iTag, popUp);
-
-    //         itemTitle.append(hTitle, vert);
-
-
-    //         itemBody.append(itemBodyP);
-    //         itemDate.append(itemDateP);
-    //         eachTask.append(itemTitle,itemBodyP,itemDate);
-    //         completedContainer.append(eachTask);
-    //     }
-
-
+   
 
        
 
@@ -748,16 +478,34 @@ function clickAction(e, value){
     
     // console.log(targetUser.dataset.action);
 
+    console.log(event.target.parentElement.children[1].classList);
+    
 
     if (event.target.parentElement.children[1].classList.contains('pop-up')) {
         secondChild.classList.remove('pop-up');
         secondChild.classList.add('no-pop-up');
         
     
-    }else if(event.target.parentElement.children[1].classList.contains('pop-up') || tasks.contains(event.target)){
+    }else if (event.target.parentElement.children[1].classList.contains('complete-pop')) {
+      secondChild.classList.remove('complete-pop');
+      secondChild.classList.add('incomplete-pop');
+    }
+    
+    
+    else if(event.target.parentElement.children[1].classList.contains('no-pop-up') ){
         secondChild.classList.remove('no-pop-up')
         secondChild.classList.add('pop-up')
+    }else if (event.target.parentElement.children[1].classList.contains('incomplete-pop') ) {
+      secondChild.classList.remove('incomplete-pop');
+      secondChild.classList.add('complete-pop');
     }
+    // else if (event.target.parentElement.children[1].classList.contains('pop-up-2') || tasks.contains(event.target)) {
+    //   secondChild.classList.remove('no-pop-up-2');
+    //   secondChild.classList.add('pop-up-2');
+    // }
+
+
+
     
     
     // if (targetted === 'edit') {
@@ -771,16 +519,21 @@ function clickAction(e, value){
 }
 
 function deletefn(value){
-    
+    let each_task = event.target.parentElement.parentElement.parentElement.parentElement;
     
     myArray.forEach((item, index) => {
         if (value === index) {
             myArray.splice(index, 1);
             localStorage.setItem('object', JSON.stringify(myArray));
+            each_task.innerHTML=``;
+            each_task.classList.remove('each-task');
             fetchItems();
+            
             
         }
     })
+    event.target.parentElement.classList.remove('no-pop-up');
+    event.target.parentElement.classList.add('pop-up');
 }
 
 function editfn(value2){
@@ -788,7 +541,6 @@ function editfn(value2){
     title.value = myArray[value2].title;
     description.value = myArray[value2].description;
 
-    console.log(myArray[value2].description);
     
     let tiTle = myArray[value2].title;
     let desCription = myArray[value2].description;
@@ -799,6 +551,8 @@ function editfn(value2){
     description.value = desCription;
     editingSignal = value2;
 
+    event.target.parentElement.classList.remove('no-pop-up');
+    event.target.parentElement.classList.add('pop-up');
 
     closeFormbtn.textContent = `Update`;
     form.classList.remove('form-no');
